@@ -12,18 +12,15 @@ module.exports = function(sequelize, DataTypes)
             field: 'full_name',
             allowNull: false
         },
-        password: {
-            type: DataTypes.STRING,
-            field: 'password',
-            allowNull: false
-        },
         email: {
             type: DataTypes.STRING,
             field: 'email',
             allowNull: false
         },
-        sex: {
-            type: DataTypes.INTEGER(2)
+        phone: {
+            type: DataTypes.STRING,
+            field: 'phone',
+            allowNull: true
         },
         cardNumber: {
             type: DataTypes.STRING(50),
@@ -34,6 +31,10 @@ module.exports = function(sequelize, DataTypes)
             type: DataTypes.STRING(225),
             field: 'address'
         },
+        isActive: {
+            type: DataTypes.BOOLEAN,
+            field: 'is_active'
+        },
         sex: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -43,5 +44,12 @@ module.exports = function(sequelize, DataTypes)
             allowNull: false,
         }
     })
+
+    Student.associate = (models) => {
+        Student.belongsTo(models.classes, {
+            foreignKey: 'classId',
+				as: 'class'
+        })
+	}
     return Student;
 };

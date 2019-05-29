@@ -2,7 +2,7 @@ var secret = require('../../config/util').secret;
 let jwt = require('jsonwebtoken');
 const message = require('../../utils/message/index')
 function getTokenFromHeader(req) {
-    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Token' ||
+    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT' ||
         req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
         return req.headers.authorization.split(' ')[1];
     }

@@ -6,7 +6,7 @@ module.exports = {
     login: async function(req, res) {
         let user = await models.user.findOne({
             where: {
-                email: req.body.userName,
+                email: req.body.email,
                 password: req.body.password
             },
             attributes: ['id','fullName', 'email']
@@ -15,7 +15,7 @@ module.exports = {
             var token = jwt.sign(user.dataValues, secretKey, {expiresIn: '10h'});
             res.send({token: 'JWT ' + token, code: 'SUCCESS', message: "login success", user: user});
         }else {
-            res.send(message.BadRequest(req, res));
+            res.send(message.BadRequest(res, 'incorrect password or email'));
         }
     }
 }

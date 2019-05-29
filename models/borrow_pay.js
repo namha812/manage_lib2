@@ -11,12 +11,7 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		studentId: {
 			type: DataTypes.INTEGER(11),
-			allowNull: true,
-			references: {
-				model: 'student',
-				key: 'id'
-			},
-			field: 'studentId'
+			allowNull: true
 		},
 		createdAt: {
 			type: DataTypes.DATE,
@@ -54,12 +49,7 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		userId: {
 			type: DataTypes.INTEGER(11),
-			allowNull: true,
-			references: {
-				model: 'user',
-				key: 'id'
-			},
-			field: 'userId'
+			allowNull: true
 		},
 		note: {
 			type: DataTypes.STRING(500),

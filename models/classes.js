@@ -1,7 +1,7 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('classes', {
+	let Class = sequelize.define('classes', {
 		id: {
 			type: DataTypes.INTEGER(11),
 			allowNull: false,
@@ -27,4 +27,13 @@ module.exports = function(sequelize, DataTypes) {
 	}, {
 		tableName: 'classes'
 	});
+
+	Class.associate = (models) => {
+        Class.hasMany(models.student, {
+            foreignKey: 'classId',
+				as: 'student'
+        })
+	}
+	
+	return Class;
 };

@@ -35,5 +35,6 @@ module.exports = function(sequelize, DataTypes)
             field: 'address'
         }
     })
+    
     return User;
 };
