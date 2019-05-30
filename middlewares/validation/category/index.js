@@ -1,4 +1,4 @@
 module.exports = {
     CreateForm    : require('./create.form'),
-    CardNumberExisdted: require('./cardNumber.existed')
+    CategoryNameExisdted: require('./categoryName.existed')
 };

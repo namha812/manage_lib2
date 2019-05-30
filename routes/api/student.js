@@ -5,6 +5,15 @@ const authenMiddleware = require('../../middlewares/authentication/index');
 const validationStudent = require('../../middlewares/validation/student/index')
 /* GET users listing. */
 router.get('/',authenMiddleware.Authentication, studentController.getAll);
-router.post('/',authenMiddleware.Authentication,validationStudent.CreateForm, studentController.create);
-router.put('/:studentId',authenMiddleware.Authentication,validationStudent.CreateForm, studentController.update);
+router.post('/',
+    authenMiddleware.Authentication,
+    validationStudent.CreateForm,
+    validationStudent.CardNumberExisdted,
+    studentController.create
+);
+router.put('/:studentId',
+    authenMiddleware.Authentication,
+    validationStudent.CreateForm, 
+    validationStudent.CardNumberExisdted,
+    studentController.update);
 module.exports = router;

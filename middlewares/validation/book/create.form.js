@@ -1,0 +1,20 @@
+const message = require('../../../utils/message/index')
+
+module.exports = (req, res, next) => {
+    if (!req.body.bookName) {
+        return res.send(message.BadRequest(res, "Book name is blank"));
+    }
+    if (!req.body.categoryId) {
+        return res.send(message.BadRequest(res, "Category is blank"));
+    }
+    if(!req.body.coverPrice) {
+        return res.send(message.BadRequest(res, "Cover price is blank"));
+    }
+    if(!req.body.quality) {
+        return res.send(message.BadRequest(res, "Quality is blank"));
+    }
+    if(!req.body.publishingHouseId) {
+        return res.send(message.BadRequest(res, "Publishing house is blank"));
+    }
+    next();
+}

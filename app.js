@@ -7,6 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/api/login');
 var studentRouter = require('./routes/api/student');
+var bookRouter = require('./routes/api/book');
+var categoryRouter = require('./routes/api/category');
 
 var messageResponse = require('./utils/message/index');
 var app = express();
@@ -40,6 +42,8 @@ app.use(function (req, res, next) {
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/student', studentRouter);
+app.use('/book', bookRouter);
+app.use('/category', categoryRouter);
 
 // error handler
 app.use(function(err, req, res, next) {

@@ -1,10 +1,10 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('book', {
+	const Book = sequelize.define('book', {
 		id: {
 			type: DataTypes.INTEGER(11),
-			allowNull: false,
+			autoIncrement: true,
 			primaryKey: true,
 			field: 'id'
 		},
@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
 				model: 'category',
 				key: 'id'
 			},
-			field: 'categoryId'
+			field: 'category_id'
 		},
 		coverPrice: {
 			type: DataTypes.STRING(45),
@@ -43,14 +43,14 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: '1',
 			field: 'is_active'
 		},
-		pusblishingHouseId: {
+		publishingHouseId: {
 			type: DataTypes.INTEGER(11),
 			allowNull: false,
 			references: {
 				model: 'publishing_house',
 				key: 'id'
 			},
-			field: 'pusblishing_house_id'
+			field: 'publishing_house_id'
 		},
 		content: {
 			type: DataTypes.STRING(2000),
@@ -77,4 +77,16 @@ module.exports = function(sequelize, DataTypes) {
 	}, {
 		tableName: 'book'
 	});
+	Book.associate = (models) => {
+        Book.belongsTo(models.category, {
+            foreignKey: 'categoryId',
+				as: 'category'
+		});
+		Book.belongsTo(models.publishingHouse, {
+            foreignKey: 'publishingHouseId',
+				as: 'publishingHouse'
+        })
+	}
+
+	return Book;
 };
