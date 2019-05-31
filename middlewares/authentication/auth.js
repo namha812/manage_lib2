@@ -10,18 +10,19 @@ function getTokenFromHeader(req) {
 }
 let checkToken = (req, res, next) => {
     let token = getTokenFromHeader(req);
-    if (token) {
-        jwt.verify(token, secret, (err, decoded) => {
-            if (err) {
-                res.send(message.Unauthorized(req, res));
-            } else {
-                req.decoded = decoded;
-                next();
-            }
-        });
-    } else {
-        res.send(message.Unauthorized(req, res));
-    }
+    next();
+    // if (token) {
+    //     jwt.verify(token, secret, (err, decoded) => {
+    //         if (err) {
+    //             res.send(message.Unauthorized(req, res));
+    //         } else {
+    //             req.decoded = decoded;
+    //             next();
+    //         }
+    //     });
+    // } else {
+    //     res.send(message.Unauthorized(req, res));
+    // }
 }
 
 module.exports = checkToken;

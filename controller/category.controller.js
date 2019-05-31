@@ -1,7 +1,5 @@
 const models = require('../models');
 const message = require('../utils/message');
-const Op = models.Sequelize.Op;
-const lodash = require('lodash');
 module.exports = {
     getAll: async function (req, res) {
         let category = await models.category.findAll({
@@ -17,7 +15,8 @@ module.exports = {
         let category = await models.category.findOne({
             where: {
                 id: req.params.categoryId
-            }
+            },
+            attributes:["id", "name", "isActive"]
         });
         if (category) {
             await category.update(req.body);
@@ -25,13 +24,5 @@ module.exports = {
         } else {
             res.send(message.BadRequest(res, "category not exsit"));
         }
-    },
-    delete: async function (req, res) {
-        let book = await models.book.destroy({
-            where: {
-                id: req.params.bookId
-            }
-        });
-        res.send({ code: 'SUCCESS', message: "delete book success", data: book });
     }
 }

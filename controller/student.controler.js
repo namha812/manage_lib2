@@ -50,7 +50,7 @@ module.exports = {
     delete: async function(req, res) {
         let student = await models.student.destroy({
             where: {
-                id: releaseEventseq.params.studentId
+                id: req.params.studentId
             }
         });
         res.send({code: 'SUCCESS', message: "delete student success", data: student});
