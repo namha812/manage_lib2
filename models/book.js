@@ -32,10 +32,10 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false,
 			field: 'cover_price'
 		},
-		quality: {
+		quantity: {
 			type: DataTypes.INTEGER(11),
 			allowNull: false,
-			field: 'quality'
+			field: 'quantity'
 		},
 		isActive: {
 			type: DataTypes.INTEGER(4),
@@ -43,14 +43,14 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: '1',
 			field: 'is_active'
 		},
-		publishingHouseId: {
+		publisherHouseId: {
 			type: DataTypes.INTEGER(11),
 			allowNull: false,
 			references: {
-				model: 'publishing_house',
+				model: 'publisher_house',
 				key: 'id'
 			},
-			field: 'publishing_house_id'
+			field: 'publisher_house_id'
 		},
 		content: {
 			type: DataTypes.STRING(2000),
@@ -82,9 +82,9 @@ module.exports = function(sequelize, DataTypes) {
             foreignKey: 'categoryId',
 				as: 'category'
 		});
-		Book.belongsTo(models.publishingHouse, {
-            foreignKey: 'publishingHouseId',
-				as: 'publishingHouse'
+		Book.belongsTo(models.publisherHouse, {
+            foreignKey: 'publisherHouseId',
+				as: 'publisherHouse'
         })
 	}
 

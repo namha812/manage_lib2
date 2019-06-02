@@ -1,7 +1,7 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('publishingHouse', {
+	return sequelize.define('publisherHouse', {
 		id: {
 			type: DataTypes.INTEGER(11),
 			allowNull: false,
@@ -43,6 +43,6 @@ module.exports = function(sequelize, DataTypes) {
 			field: 'updated_at'
 		}
 	}, {
-		tableName: 'publishing_house'
+		tableName: 'publisher_house'
 	});
 };

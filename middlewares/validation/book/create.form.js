@@ -13,8 +13,8 @@ module.exports = (req, res, next) => {
     if(!req.body.quality) {
         return res.send(message.BadRequest(res, "Quality is blank"));
     }
-    if(!req.body.publishingHouseId) {
-        return res.send(message.BadRequest(res, "Publishing house is blank"));
+    if(!req.body.publisherHouseId) {
+        return res.send(message.BadRequest(res, "publisher house is blank"));
     }
     next();
 }

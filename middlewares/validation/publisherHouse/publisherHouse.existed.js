@@ -7,14 +7,14 @@ module.exports = async (req, res, next) => {
             name: req.body.name
         }
     }
-    if(req.params.publishingHouseId) {
+    if(req.params.publisherHouseId) {
         condition.where.id = {
-            [Op.ne]: req.params.publishingHouseId
+            [Op.ne]: req.params.publisherHouseId
         }
     }
-    let publishingHouse = await models.publishingHouse.findOne(condition);
-    if(publishingHouse) {
-        return res.send(message.BadRequest(res, "publishingHouse name existed"));
+    let publisherHouse = await models.publisherHouse.findOne(condition);
+    if(publisherHouse) {
+        return res.send(message.BadRequest(res, "publisherHouse name existed"));
     }
     next();
 }
