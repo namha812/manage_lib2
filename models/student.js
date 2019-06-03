@@ -50,6 +50,10 @@ module.exports = function(sequelize, DataTypes)
             foreignKey: 'classId',
 				as: 'class'
         })
+        Student.hasMany(models.borrowPay, {
+            foreignKey: 'studentId',
+				as: 'borrowPay'
+        })
 	}
     return Student;
 };

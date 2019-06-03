@@ -5,7 +5,7 @@ module.exports = {
         let category = await models.category.findAll({
             attributes: ['id', 'name', 'isActive']
         });
-        res.send({ code: 'SUCCESS', message: "get book success", data: category });
+        res.send({ code: 'SUCCESS', message: "get category success", data: category });
     },
     create: async function (req, res) {
         let category = await models.category.create(req.body);

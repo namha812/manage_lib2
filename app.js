@@ -10,6 +10,7 @@ var studentRouter = require('./routes/api/student');
 var bookRouter = require('./routes/api/book');
 var categoryRouter = require('./routes/api/category');
 var publisherHouseRouter = require('./routes/api/publisherHouse');
+var brrowPayRouter = require('./routes/api/brrow_pay');
 
 var messageResponse = require('./utils/message/index');
 var app = express();
@@ -46,6 +47,7 @@ app.use('/student', studentRouter);
 app.use('/book', bookRouter);
 app.use('/category', categoryRouter);
 app.use('/publisherHouse', publisherHouseRouter);
+app.use('/brrowPay', brrowPayRouter)
 
 // error handler
 app.use(function(err, req, res, next) {

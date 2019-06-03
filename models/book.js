@@ -1,6 +1,6 @@
 /* jshint indent: 1 */
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
 	const Book = sequelize.define('book', {
 		id: {
 			type: DataTypes.INTEGER(11),
@@ -75,17 +75,21 @@ module.exports = function(sequelize, DataTypes) {
 			field: 'updated_at'
 		}
 	}, {
-		tableName: 'book'
-	});
+			tableName: 'book'
+		});
 	Book.associate = (models) => {
-        Book.belongsTo(models.category, {
-            foreignKey: 'categoryId',
-				as: 'category'
+		Book.belongsTo(models.category, {
+			foreignKey: 'categoryId',
+			as: 'category'
 		});
 		Book.belongsTo(models.publisherHouse, {
-            foreignKey: 'publisherHouseId',
-				as: 'publisherHouse'
-        })
+			foreignKey: 'publisherHouseId',
+			as: 'publisherHouse'
+		})
+		Book.hasMany(models.borrowPay, {
+			foreignKey: 'bookId',
+			as: 'brrowPay'
+		})
 	}
 
 	return Book;

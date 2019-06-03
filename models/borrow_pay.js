@@ -1,7 +1,7 @@
 /* jshint indent: 1 */
 
-module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('borrowPay', {
+module.exports = function (sequelize, DataTypes) {
+	const BrrowPay = sequelize.define('borrowPay', {
 		id: {
 			type: DataTypes.INTEGER(11),
 			allowNull: false,
@@ -11,7 +11,13 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		studentId: {
 			type: DataTypes.INTEGER(11),
-			allowNull: true
+			allowNull: true,
+			field: 'student_id'
+		},
+		bookId: {
+			type: DataTypes.INTEGER(11),
+			allowNull: true,
+			field: 'book_id'
 		},
 		createdAt: {
 			type: DataTypes.DATE,
@@ -47,16 +53,40 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true,
 			field: 'status'
 		},
-		userId: {
-			type: DataTypes.INTEGER(11),
-			allowNull: true
-		},
 		note: {
 			type: DataTypes.STRING(500),
 			allowNull: true,
 			field: 'note'
+		},
+		borrowDate: {
+			type: DataTypes.DATE,
+			allowNull: true,
+			defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+			field: 'borrow_date'
+		},
+		payDate: {
+			type: DataTypes.DATE,
+			allowNull: true,
+			defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+			field: 'pay_date'
+		},
+		borrowTotal: {
+			type: DataTypes.INTEGER(11),
+			allowNull: true,
+			field: 'borrow_total'
 		}
 	}, {
-		tableName: 'borrow_pay'
-	});
+			tableName: 'borrow_pay'
+		});
+	BrrowPay.associate = (models) => {
+		BrrowPay.belongsTo(models.student, {
+			foreignKey: 'studentId',
+			as: 'student'
+		})
+		BrrowPay.belongsTo(models.book, {
+			foreignKey: 'bookId',
+			as: 'book'
+		})
+	}
+	return BrrowPay
 };

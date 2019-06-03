@@ -18,7 +18,7 @@ module.exports = {
                     required: true,
                     as: 'publisherHouse',
                     attributes: ['id', 'name'],
-                }
+                },
             ],
             order: [['id', 'desc']],
             where: {
