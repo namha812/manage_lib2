@@ -57,9 +57,9 @@ module.exports = {
             })
             await book.update({ quantity: quantity });
         }
-        res.send({ code: 'SUCCESS', message: "create category success", data: borrow });
+        res.send({ code: 'SUCCESS', message: "payment success", data: borrow });
     },
-    update: async function (req, res) {
+    create: async function (req, res) {
         let category = await models.category.findOne({
             where: {
                 id: req.params.categoryId
