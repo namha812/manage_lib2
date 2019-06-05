@@ -7,7 +7,7 @@ const handerErr = require('../../utils/handerErr');
 router.get('/', 
     handerErr(authenMiddleware.Authentication), 
     handerErr(borrowPayController.getAll));
-router.post('/', 
+router.post('/borrow', 
     handerErr(authenMiddleware.Authentication),
     handerErr(borrowPayController.create));
 router.put('/payment/:borrowId', 
