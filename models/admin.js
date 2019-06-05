@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes)
             allowNull: false
         },
         role: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER(2),
             field: 'role',
             allowNull: false
         },

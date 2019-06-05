@@ -1,3 +1,4 @@
 module.exports = {
-    Authentication    : require('./auth')
+    Authentication    : require('./auth'),
+    SuperAdmin: require('./superAdmin')
 };
