@@ -17,5 +17,6 @@ module.exports = {
         }else {
             res.send(message.BadRequest(res, 'incorrect password or email'));
         }
+        // res.send({token: 'JWT ' + "token", code: 'SUCCESS', message: "login success", user: "admin"});
     }
 }

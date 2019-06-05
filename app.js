@@ -10,7 +10,7 @@ var studentRouter = require('./routes/api/student');
 var bookRouter = require('./routes/api/book');
 var categoryRouter = require('./routes/api/category');
 var publisherHouseRouter = require('./routes/api/publisherHouse');
-var brrowPayRouter = require('./routes/api/brrow_pay');
+var borrowPayRouter = require('./routes/api/borrow_pay');
 
 var messageResponse = require('./utils/message/index');
 var app = express();
@@ -38,6 +38,7 @@ app.use(function (req, res, next) {
   // Set to true if you need the website to include cookies in the requests sent
   // to the API (e.g. in case you use sessions)
   res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization");
   next();
 });
 
@@ -47,7 +48,7 @@ app.use('/student', studentRouter);
 app.use('/book', bookRouter);
 app.use('/category', categoryRouter);
 app.use('/publisherHouse', publisherHouseRouter);
-app.use('/brrowPay', brrowPayRouter)
+app.use('/borrowPay', borrowPayRouter)
 
 // error handler
 app.use(function(err, req, res, next) {

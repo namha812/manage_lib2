@@ -1,6 +1,8 @@
 const models = require('../models');
 const message = require('../utils/message');
-const moment = require('moment')
+const moment = require('moment');
+const Op = models.Sequelize.Op;
+const lodash = require('lodash');
 module.exports = {
     getAll: async function (req, res) {
         let borrowPay = await models.student.findAll({
@@ -57,20 +59,36 @@ module.exports = {
             })
             await book.update({ quantity: quantity });
         }
-        res.send({ code: 'SUCCESS', message: "create category success", data: borrow });
+        res.send({ code: 'SUCCESS', message: "payment success", data: borrow });
     },
-    update: async function (req, res) {
-        let category = await models.category.findOne({
-            where: {
-                id: req.params.categoryId
-            },
-            attributes: ["id", "name", "isActive"]
+    create: async function (req, res) {
+        let bookIds = []
+        req.body.borrowPay.forEach(item => {
+            bookIds.push(item.bookId);
+        })
+        let books = await models.book.findAll({
+            where:{
+                id: { [Op.in]: bookIds }
+            }
         });
-        if (category) {
-            await category.update(req.body);
-            res.send({ code: 'SUCCESS', message: "update category success", data: category });
-        } else {
-            res.send(message.BadRequest(res, "category not exsit"));
-        }
+        let arrPromise = []
+        books.forEach(book => {
+            let borrowBook = lodash.find(req.body.borrowPay, function(o) {
+                return book.id === o.bookId;
+            });
+            console.log(borrowBook);
+            let quantity = book.quantity - borrowBook.quantity;
+            console.log(quantity)
+            arrPromise.push(models.book.update({ quantity: quantity }, { where: { id: borrowBook.bookId }}));
+            arrPromise.push(models.borrowPay.create({ 
+                studentId: req.body.studentId, 
+                expiryDate: req.body.expiryDate,
+                borrowTotal: borrowBook.quantity,
+                bookId: borrowBook.bookId,
+                createdBy: 1
+            }))
+        })
+        await Promise.all(arrPromise);
+        res.send({ code: 'SUCCESS', message: "borrow book success", data: books });
     }
 }
