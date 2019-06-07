@@ -6,8 +6,8 @@ const validationBook = require('../../middlewares/validation/book/index');
 const handerErr = require('../../utils/handerErr');
 /* GET users listing. */
 router.get('/', 
-    handerErr(authenMiddleware.Authentication), 
-    handerErr(authenMiddleware.SuperAdmin),
+    // handerErr(authenMiddleware.Authentication), 
+    // handerErr(authenMiddleware.SuperAdmin),
     handerErr(bookController.getAll));
 router.post('/', 
     handerErr(authenMiddleware.Authentication),

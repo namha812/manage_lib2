@@ -1,4 +1,4 @@
 module.exports = function(req, res){
-    res.status = 404;
+    res.statusCode = 404;
     return {code: 'NOT_FOUND', message: "This API not found! "};
 }

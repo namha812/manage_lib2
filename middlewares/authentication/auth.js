@@ -1,6 +1,7 @@
 var secret = require('../../config/util').secret;
 let jwt = require('jsonwebtoken');
-const message = require('../../utils/message/index')
+const message = require('../../utils/message/index');
+const models = require('../../models');
 function getTokenFromHeader(req) {
     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT' ||
         req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
@@ -15,6 +16,10 @@ let checkToken = (req, res, next) => {
             if (err) {
                 res.send(message.Unauthorized(req, res));
             } else {
+                // let account = await models.admin.findOne({where: { 
+                //     id: decoded.id,
+                //     isActive:
+                // }});
                 req.decoded = decoded;
                 next();
             }

@@ -16,10 +16,10 @@ router.post('/',
     handerErr(authenMiddleware.Authentication),
     handerErr(authenMiddleware.SuperAdmin),
     handerErr(validationAdmin.CreateForm),
-    handerErr(validationAdmin.EmailAdminExisdted),  
+    handerErr(validationAdmin.EmailAccountExisdted),  
     handerErr(adminController.create));
 router.put('/:accountId', 
     handerErr(authenMiddleware.Authentication), 
-    // handerErr(validationBook.CardNumberExisdted), 
+    handerErr(validationAdmin.EmailAccountExisdted),  
     handerErr(adminController.update));
 module.exports = router;

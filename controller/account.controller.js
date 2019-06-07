@@ -9,11 +9,16 @@ exports.create = async function(req, res){
     res.send({ code: 'SUCCESS', message: "create admin success", data: admin });
 }
 
-// exports.update = function(req, res){
-//     req.body.password = md5(req.body.password)
-//     let admin = await models.admin.create(req.body);
-//     res.send({ code: 'SUCCESS', message: "create admin success", data: admin });
-// }
+exports.update = async function(req, res){
+    if(parseInt(req.decoded.role) !== 1 && req.decoded.id !== parseInt(req.params.accountId)) {
+        res.send(message.BadRequest(res, "Bạn không có quyền sửa"))
+    }else {
+        let admin = await models.admin.findOne({where: { id: req.params.accountId }});
+        req.body.password = req.body.password ? md5(req.body.password) : admin.password;
+        await admin.update(req.body);
+        res.send({ code: 'SUCCESS', message: "create admin success", data: admin });
+    }
+}
 
 exports.getAll = async function(req, res) {
     let admin = await models.admin.findAll({
@@ -23,7 +28,7 @@ exports.getAll = async function(req, res) {
 }
 
 exports.getById = async function(req, res){
-    if(req.decoded.role !== 1 && req.decoded.id !== parseInt(req.params.accountId)) {
+    if(parseInt(req.decoded.role) !== 1 && req.decoded.id !== parseInt(req.params.accountId)) {
         return res.send({ code: 'ERR', message: "get info faild", data: admin });
     }else {
         let admin = await models.admin.findOne({where: {id: req.params.accountId}});

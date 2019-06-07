@@ -1,7 +1,7 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('historyInput', {
+	const HistoryInput = sequelize.define('historyInput', {
 		id: {
 			type: DataTypes.INTEGER(11),
 			allowNull: false,
@@ -9,20 +9,20 @@ module.exports = function(sequelize, DataTypes) {
 			autoIncrement: true,
 			field: 'id'
 		},
-		userId: {
+		adminId: {
 			type: DataTypes.INTEGER(11),
 			allowNull: true,
-			field: 'userId'
+			field: 'admin_id'
 		},
-		quality: {
+		quantity: {
 			type: DataTypes.INTEGER(11),
 			allowNull: true,
-			field: 'quality'
+			field: 'quantity'
 		},
 		bookId: {
 			type: DataTypes.INTEGER(11),
 			allowNull: true,
-			field: 'bookId'
+			field: 'book_id'
 		},
 		createdAt: {
 			type: DataTypes.DATE,
@@ -39,4 +39,17 @@ module.exports = function(sequelize, DataTypes) {
 	}, {
 		tableName: 'history_input'
 	});
+
+	HistoryInput.associate = (models) => {
+        HistoryInput.belongsTo(models.admin, {
+            foreignKey: 'adminId',
+				as: 'account'
+		})
+		HistoryInput.belongsTo(models.book, {
+            foreignKey: 'bookId',
+				as: 'book'
+        })
+	}
+
+	return HistoryInput;
 };

@@ -41,7 +41,7 @@ module.exports = {
     },
     create: async function (req, res) {
         let book = await models.book.create(req.body);
-        await models.historyInput.create({userId: 1, quantity: req.body.quantity, bookId: book.id});
+        await models.historyInput.create({adminId: req.decoded.id, quantity: req.body.quantity, bookId: book.id});
         res.send({ code: 'SUCCESS', message: "create book success", data: book });
     },
     update: async function (req, res) {
@@ -53,7 +53,7 @@ module.exports = {
         if (book) {
             let updateQuantity = req.body.quantity - book.quantity;
             if(updateQuantity !== 0) {
-                await models.historyInput.create({userId: 1, quantity: updateQuantity, bookId: book.id});
+                await models.historyInput.create({adminId: req.decoded.id, quantity: updateQuantity, bookId: book.id});
             }
             await book.update(req.body);
             res.send({ code: 'SUCCESS', message: "update book success", data: book });

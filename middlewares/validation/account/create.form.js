@@ -8,10 +8,10 @@ module.exports = (req, res, next) => {
         return res.send(message.BadRequest(res, "email incorrect"));
     }
     if (!req.body.role) {
-        return res.send(message.BadRequest(res, "role name is blank"));
+        return res.send(message.BadRequest(res, "role is blank"));
     }
     if (!req.body.password) {
-        return res.send(message.BadRequest(res, "password name is blank"));
+        return res.send(message.BadRequest(res, "password is blank"));
     }
     next();
 }

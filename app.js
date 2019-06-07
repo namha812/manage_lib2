@@ -12,6 +12,7 @@ const categoryRouter = require('./routes/api/category');
 const publisherHouseRouter = require('./routes/api/publisherHouse');
 const borrowPayRouter = require('./routes/api/borrow_pay');
 const accountRouter = require('./routes/api/account');
+const historyInputRouter = require('./routes/api/historyInput');
 
 const messageResponse = require('./utils/message/index');
 const app = express();
@@ -49,6 +50,7 @@ app.use('/category', categoryRouter);
 app.use('/publisherHouse', publisherHouseRouter);
 app.use('/borrowPay', borrowPayRouter);
 app.use('/account', accountRouter);
+app.use('/historyInput', historyInputRouter)
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -58,7 +60,6 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
   if(err.status === 404) {
     res.send(messageResponse.NotFoundError(req, res));
   }else {
