@@ -7,9 +7,9 @@ module.exports = async (req, res, next) => {
             email: req.body.email
         }
     }
-    if(req.params.adminId) {
+    if(req.params.accountId) {
         condition.where.id = {
-            [Op.ne]: req.params.adminId
+            [Op.ne]: req.params.accountId
         }
     }
     let admin = await models.admin.findOne(condition);

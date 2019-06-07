@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		name: {
 			type: DataTypes.STRING(225),
-			allowNull: true,
+			allowNull: false,
 			field: 'name'
 		},
 		isActive: {
@@ -19,6 +19,11 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true,
 			defaultValue: '1',
 			field: 'is_active'
+		},
+		description: {
+			type: DataTypes.STRING,
+			allowNull: true,
+			field: 'description'
 		},
 		createdAt: {
 			type: DataTypes.DATE,

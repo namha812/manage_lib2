@@ -12,10 +12,17 @@ module.exports = {
                     model: models.borrowPay,
                     required: true,
                     as: 'borrowPay',
-                    attributes: ['id', 'status', 'note', 'borrowDate', 'borrowTotal', 'expiryDate'],
+                    attributes: ['id', 'status', 'note', 'borrowDate', 'borrowTotal', 'expiryDate', 'bookId'],
                     where: {
                         status: 1
-                    }
+                    },
+                    include: [{
+                        model: models.book,
+                        require: true,
+                        as: 'book',
+                        attributes: ['bookName', 'author', 'coverPrice']
+                        }
+                    ]
                 },
             ]
         });

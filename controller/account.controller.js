@@ -17,16 +17,16 @@ exports.create = async function(req, res){
 
 exports.getAll = async function(req, res) {
     let admin = await models.admin.findAll({
-        attributes: ['id', 'fullName', 'email', 'address', 'role']
+        attributes: ['id', 'fullName', 'email', 'address', 'role', 'isActive']
     });
     res.send({ code: 'SUCCESS', message: "create admin success", data: admin });
 }
 
 exports.getById = async function(req, res){
-    if(req.decoded.role !== 1 && req.decoded.id !== parseInt(req.params.adminId)) {
+    if(req.decoded.role !== 1 && req.decoded.id !== parseInt(req.params.accountId)) {
         return res.send({ code: 'ERR', message: "get info faild", data: admin });
     }else {
-        let admin = await models.admin.findOne({where: {id: req.params.adminId}});
+        let admin = await models.admin.findOne({where: {id: req.params.accountId}});
         res.send({ code: 'SUCCESS', message: "create admin success", data: admin });
     }
     

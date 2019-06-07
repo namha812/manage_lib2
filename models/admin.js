@@ -33,6 +33,11 @@ module.exports = function(sequelize, DataTypes)
         address: {
             type: DataTypes.STRING(225),
             field: 'address'
+        },
+        isActive: {
+            type: DataTypes.INTEGER(2),
+            field: 'is_active',
+            allowNull: false
         }
     })
     

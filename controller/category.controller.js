@@ -3,7 +3,7 @@ const message = require('../utils/message');
 module.exports = {
     getAll: async function (req, res) {
         let category = await models.category.findAll({
-            attributes: ['id', 'name', 'isActive']
+            attributes: ['id', 'name', 'isActive', 'createdAt']
         });
         res.send({ code: 'SUCCESS', message: "get category success", data: category });
     },
