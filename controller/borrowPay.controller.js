@@ -65,7 +65,7 @@ module.exports = {
             },{
                 where: {id: req.params.borrowId}
             })
-            await book.update({ quantity: quantity });
+            await book.update({ quantity: quantity });  
         }
         res.send({ code: 'SUCCESS', message: "payment success", data: borrow });
     },
