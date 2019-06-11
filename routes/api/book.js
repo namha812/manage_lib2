@@ -11,10 +11,11 @@ router.get('/',
     handerErr(bookController.getAll));
 router.post('/', 
     handerErr(authenMiddleware.Authentication),
-    handerErr(validationBook.CardNumberExisdted), 
+    handerErr(validationBook.CreateForm),
+    handerErr(validationBook.BookNameExisdted), 
     handerErr(bookController.create));
 router.put('/:bookId', 
     handerErr(authenMiddleware.Authentication), 
-    handerErr(validationBook.CardNumberExisdted), 
+    handerErr(validationBook.BookNameExisdted), 
     handerErr(bookController.update));
 module.exports = router;

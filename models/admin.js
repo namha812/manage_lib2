@@ -35,9 +35,10 @@ module.exports = function(sequelize, DataTypes)
             field: 'address'
         },
         isActive: {
-            type: DataTypes.INTEGER(2),
+            type: DataTypes.BOOLEAN,
             field: 'is_active',
-            allowNull: false
+            allowNull: false,
+            defaultValue: true
         }
     })
     

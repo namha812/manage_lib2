@@ -33,7 +33,9 @@ module.exports = function(sequelize, DataTypes)
         },
         isActive: {
             type: DataTypes.BOOLEAN,
-            field: 'is_active'
+            field: 'is_active',
+            allowNull: false,
+            defaultValue: true
         },
         sex: {
             type: DataTypes.INTEGER,

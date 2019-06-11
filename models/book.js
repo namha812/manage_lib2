@@ -38,11 +38,11 @@ module.exports = function (sequelize, DataTypes) {
 			field: 'quantity'
 		},
 		isActive: {
-			type: DataTypes.INTEGER(4),
-			allowNull: true,
-			defaultValue: '1',
-			field: 'is_active'
-		},
+            type: DataTypes.BOOLEAN,
+            field: 'is_active',
+            allowNull: false,
+            defaultValue: true
+        },
 		publisherHouseId: {
 			type: DataTypes.INTEGER(11),
 			allowNull: false,

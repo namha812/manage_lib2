@@ -6,6 +6,6 @@ module.exports = {
         username: "root",
         password: "",
         port: "3306",
-        logging: false
+        logging: true
       }
 }

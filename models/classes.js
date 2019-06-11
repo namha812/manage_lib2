@@ -14,6 +14,12 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false,
 			field: 'class_name'
 		},
+		isActive: {
+			type: DataTypes.BOOLEAN,
+			allowNull: true,
+			defaultValue: true,
+			field: 'is_active'
+		},
 		createdAt: {
 			type: DataTypes.DATE,
 			allowNull: false,

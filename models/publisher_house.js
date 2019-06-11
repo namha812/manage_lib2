@@ -15,11 +15,11 @@ module.exports = function(sequelize, DataTypes) {
 			field: 'name'
 		},
 		isActive: {
-			type: DataTypes.INTEGER(2),
-			allowNull: true,
-			defaultValue: '1',
-			field: 'is_active'
-		},
+            type: DataTypes.BOOLEAN,
+            field: 'is_active',
+            allowNull: false,
+            defaultValue: true
+        },
 		address: {
 			type: DataTypes.STRING(225),
 			allowNull: true,

@@ -13,9 +13,6 @@ module.exports = {
                     required: true,
                     as: 'borrowPay',
                     attributes: ['id', 'status', 'note', 'borrowDate', 'borrowTotal', 'expiryDate', 'bookId'],
-                    where: {
-                        status: 1
-                    },
                     include: [{
                         model: models.book,
                         require: true,
@@ -31,7 +28,11 @@ module.exports = {
                 let total = 0;
                 element.borrowPay.forEach(item => {
                     total += item.borrowTotal;
-                    if(moment(new Date()).isAfter(item.expiryDate)){
+                    let compareDate = new Date();
+                    if(item.status === 2) {
+                        compareDate = item.payDate
+                    }
+                    if(moment(compareDate).isAfter(item.expiryDate)){
                         item.dataValues.isExpiry = true
                     }else {
                         item.dataValues.isExpiry = false
@@ -92,7 +93,7 @@ module.exports = {
                 expiryDate: req.body.expiryDate,
                 borrowTotal: borrowBook.quantity,
                 bookId: borrowBook.bookId,
-                createdBy: 1
+                createdBy: req.decoded.id
             }))
         })
         await Promise.all(arrPromise);

@@ -10,8 +10,8 @@ module.exports = (req, res, next) => {
     if(!req.body.coverPrice) {
         return res.send(message.BadRequest(res, "Cover price is blank"));
     }
-    if(!req.body.quality) {
-        return res.send(message.BadRequest(res, "Quality is blank"));
+    if(!req.body.quantity) {
+        return res.send(message.BadRequest(res, "Quantity is blank"));
     }
     if(!req.body.publisherHouseId) {
         return res.send(message.BadRequest(res, "publisher house is blank"));

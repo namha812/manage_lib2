@@ -13,6 +13,7 @@ const publisherHouseRouter = require('./routes/api/publisherHouse');
 const borrowPayRouter = require('./routes/api/borrow_pay');
 const accountRouter = require('./routes/api/account');
 const historyInputRouter = require('./routes/api/historyInput');
+const classRouter = require('./routes/api/class');
 
 const messageResponse = require('./utils/message/index');
 const app = express();
@@ -50,7 +51,8 @@ app.use('/category', categoryRouter);
 app.use('/publisherHouse', publisherHouseRouter);
 app.use('/borrowPay', borrowPayRouter);
 app.use('/account', accountRouter);
-app.use('/historyInput', historyInputRouter)
+app.use('/historyInput', historyInputRouter);
+app.use('/class', classRouter);
 
 // error handler
 app.use(function(err, req, res, next) {

@@ -67,7 +67,6 @@ module.exports = function (sequelize, DataTypes) {
 		payDate: {
 			type: DataTypes.DATE,
 			allowNull: true,
-			defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
 			field: 'pay_date'
 		},
 		borrowTotal: {
