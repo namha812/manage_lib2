@@ -29,7 +29,7 @@ exports.getAll = async function(req, res) {
 
 exports.getById = async function(req, res){
     if(parseInt(req.decoded.role) !== 1 && req.decoded.id !== parseInt(req.params.accountId)) {
-        return res.send({ code: 'ERR', message: "get info faild", data: admin });
+        return res.send({ code: 'ERR', message: "get info faild" });
     }else {
         let admin = await models.admin.findOne({where: {id: req.params.accountId}});
         res.send({ code: 'SUCCESS', message: "create admin success", data: admin });

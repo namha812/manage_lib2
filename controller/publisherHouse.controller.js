@@ -3,7 +3,7 @@ const message = require('../utils/message');
 module.exports = {
     getAll: async function (req, res) {
         let publisherHouse = await models.publisherHouse.findAll({
-            attributes: ['id', 'name', 'isActive', 'address', 'createdAt']
+            attributes: ['id', 'name', 'isActive', 'address', 'createdAt', 'description']
         });
         res.send({ code: 'SUCCESS', message: "get book success", data: publisherHouse });
     },
@@ -16,7 +16,7 @@ module.exports = {
             where: {
                 id: req.params.publisherHouseId
             },
-            attributes:["id", "name", "isActive"]
+            attributes:["id", "name", "isActive", "description"]
         });
         if (publisherHouse) {
             await publisherHouse.update(req.body);

@@ -56,16 +56,16 @@ module.exports = {
             }
         })
         if(borrow) {
-            let quantity = borrow.borrowTotal - req.body.payTotal + book.quantity;
-            let statusPayment = borrow.borrowTotal - req.body.payTotal === 0 ? 2 : 1;
+            let quantity = book.quantity + 1;
             await models.borrowPay.update({ 
                 borrowTotal: borrow.borrowTotal - req.body.payTotal,
                 note: req.body.note,
-                status: statusPayment
+                status: 2,
+                payDate: new Date()
             },{
                 where: {id: req.params.borrowId}
             })
-            await book.update({ quantity: quantity });  
+            await book.update({ quantity: quantity });
         }
         res.send({ code: 'SUCCESS', message: "payment success", data: borrow });
     },
@@ -93,7 +93,8 @@ module.exports = {
                 expiryDate: req.body.expiryDate,
                 borrowTotal: borrowBook.quantity,
                 bookId: borrowBook.bookId,
-                createdBy: req.decoded.id
+                createdBy: req.decoded.id,
+                status: 1
             }))
         })
         await Promise.all(arrPromise);

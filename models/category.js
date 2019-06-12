@@ -1,7 +1,7 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('category', {
+	const Category =  sequelize.define('category', {
 		id: {
 			type: DataTypes.INTEGER(11),
 			allowNull: false,
@@ -15,9 +15,9 @@ module.exports = function(sequelize, DataTypes) {
 			field: 'name'
 		},
 		isActive: {
-			type: DataTypes.INTEGER(2),
+			type: DataTypes.BOOLEAN,
 			allowNull: true,
-			defaultValue: '1',
+			defaultValue: true,
 			field: 'is_active'
 		},
 		description: {
@@ -45,4 +45,11 @@ module.exports = function(sequelize, DataTypes) {
 	}, {
 		tableName: 'category'
 	});
+	Category.associate = (models) => {
+		Category.belongsTo(models.admin, {
+			foreignKey: 'createdBy',
+			as: 'admin'
+		});
+	}
+	return Category;
 };
