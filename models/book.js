@@ -27,6 +27,11 @@ module.exports = function (sequelize, DataTypes) {
 			},
 			field: 'category_id'
 		},
+		imageUrl: {
+			type: DataTypes.STRING(300),
+			allowNull: true,
+			field: 'image_url'
+		},
 		coverPrice: {
 			type: DataTypes.STRING(45),
 			allowNull: false,

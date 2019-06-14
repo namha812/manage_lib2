@@ -5,7 +5,7 @@ const lodash = require('lodash');
 module.exports = {
     getAll: async function (req, res) {
         let books = await models.book.findAll({
-            attributes: ['id', 'bookName', 'author', 'coverPrice', 'quantity', 'content', 'isActive', 'categoryId', 'publisherHouseId'],
+            attributes: ['id', 'bookName', 'author', 'coverPrice', 'quantity', 'content', 'isActive', 'categoryId', 'publisherHouseId', 'imageUrl'],
             include: [
                 {
                     model: models.category,

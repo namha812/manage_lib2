@@ -16,12 +16,16 @@ let checkToken = (req, res, next) => {
             if (err) {
                 res.send(message.Unauthorized(req, res));
             } else {
-                // let account = await models.admin.findOne({where: { 
-                //     id: decoded.id,
-                //     isActive:
-                // }});
-                req.decoded = decoded;
-                next();
+                let account = await models.admin.findOne({where: { 
+                    id: decoded.id,
+                    isActive: true
+                }});
+                if(account) {
+                    req.decoded = decoded;
+                    next();
+                }else {
+                    res.send(message.Unauthorized(req, res));
+                }
             }
         });
     } else {
