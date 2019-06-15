@@ -9,10 +9,10 @@ function getTokenFromHeader(req) {
     }
     return null;
 }
-let checkToken = (req, res, next) => {
+let checkToken = async (req, res, next) => {
     let token = getTokenFromHeader(req);
     if (token) {
-        jwt.verify(token, secret, (err, decoded) => {
+        jwt.verify(token, secret, async (err, decoded) => {
             if (err) {
                 res.send(message.Unauthorized(req, res));
             } else {

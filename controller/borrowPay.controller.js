@@ -84,7 +84,6 @@ module.exports = {
             let borrowBook = lodash.find(req.body.borrowPay, function(o) {
                 return book.id === o.bookId;
             });
-            console.log(borrowBook);
             let quantity = book.quantity - borrowBook.quantity;
             console.log(quantity)
             arrPromise.push(models.book.update({ quantity: quantity }, { where: { id: borrowBook.bookId }}));

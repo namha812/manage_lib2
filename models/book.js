@@ -58,7 +58,7 @@ module.exports = function (sequelize, DataTypes) {
 			field: 'publisher_house_id'
 		},
 		content: {
-			type: DataTypes.STRING(2000),
+			type: DataTypes.TEXT,
 			allowNull: true,
 			field: 'content'
 		},
