@@ -12,7 +12,7 @@ module.exports = {
                     model: models.borrowPay,
                     required: true,
                     as: 'borrowPay',
-                    attributes: ['id', 'status', 'note', 'borrowDate', 'borrowTotal', 'expiryDate', 'bookId'],
+                    attributes: ['id', 'status', 'note', 'borrowDate', 'borrowTotal', 'expiryDate', 'bookId', 'payDate'],
                     include: [{
                         model: models.book,
                         require: true,
